@@ -253,6 +253,7 @@ namespace kalkulator
                         textBox1.Text = "0";
                     }
                     textBox1.AppendText(",");
+                    enterValue = false;
                 }
             }
         }
@@ -288,11 +289,25 @@ namespace kalkulator
 
         private void buttonCE_Click(object sender, EventArgs e)
         {
-            if(textBox2.Text.Contains("="))
+            if (textBox2.Text.Contains("="))
             {
                 textBox2.Text = string.Empty;
             }
-                textBox1.Text = "0";
+            textBox1.Text = "0";
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            double resultOfSqrt;
+            num1 = double.Parse(textBox1.Text);
+            resultOfSqrt = Math.Sqrt(num1);
+            textBox2.Text = $"√{num1}";
+            textBox1.Text = $"{resultOfSqrt}";
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }
