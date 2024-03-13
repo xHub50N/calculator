@@ -13,11 +13,11 @@ namespace kalkulator
     public partial class Form1 : Form
     {
         string op = "";
-        double result = 0;
-        double num1, num2 = 0;
+        decimal result = 0;
+        decimal num1, num2 = 0;
         bool enterValue = false;
         bool ifClicked = false;
-        double tempDouble = 0;
+        decimal tempDouble = 0;
         public Form1()
         {
             InitializeComponent();
@@ -35,13 +35,16 @@ namespace kalkulator
                     textBox2.Text = string.Empty;
             }
             Button button = (Button)sender;
-            textBox1.Text = textBox1.Text + button.Text;
+            if (textBox1.Text.Length < 15)
+            {
+                textBox1.Text = textBox1.Text + button.Text;
+            }
 
         }
 
         private void buttonEqual_Click(object sender, EventArgs e) // =
         {
-            num2 = double.Parse(textBox1.Text);
+            num2 = decimal.Parse(textBox1.Text);
             if (op.Equals("+"))
             {
                 if (!ifClicked)
@@ -136,7 +139,9 @@ namespace kalkulator
                 {
                     if (num2 == 0)
                     {
-                        textBox1.Text = "Inf";
+                        textBox1.Text = "Nie dziel przez 0";
+                        buttonEqual.Enabled = false;
+                        buttonEqual.BackColor = Color.Red;  
                     }
                     else
                     {
@@ -152,7 +157,7 @@ namespace kalkulator
                 {
                     if (result == 0)
                     {
-                        textBox1.Text = "Inf";
+                        textBox1.Text = string.Empty;   
                     }
                     else
                     {
@@ -164,6 +169,10 @@ namespace kalkulator
                 }
             }
             enterValue = true;
+            if (textBox1.Text.Length > 15)
+            {
+                textBox1.Text = textBox1.Text.Substring(0, 15);
+            }
         }
         private void button7_Click(object sender, EventArgs e) // C
         {
@@ -175,6 +184,9 @@ namespace kalkulator
             enterValue = false;
             ifClicked = false;
             tempDouble = 0;
+            buttonEqual.Enabled = true;
+            op = "";
+            buttonEqual.BackColor = System.Drawing.SystemColors.ActiveBorder;
         }
         private void buttonAdd_Click(object sender, EventArgs e)//+
         {
@@ -188,7 +200,7 @@ namespace kalkulator
             else
             {
                 textBox2.Clear();
-                num1 = double.Parse(textBox1.Text);
+                num1 = decimal.Parse(textBox1.Text);
                 textBox2.AppendText($"{num1} +");
                 enterValue = true;
             }
@@ -206,7 +218,7 @@ namespace kalkulator
             else
             {
                 textBox2.Clear();
-                num1 = double.Parse(textBox1.Text);
+                num1 = decimal.Parse(textBox1.Text);
                 textBox2.AppendText($"{num1} -");
                 enterValue = true;
             }
@@ -223,7 +235,7 @@ namespace kalkulator
             else
             {
                 textBox2.Clear();
-                num1 = double.Parse(textBox1.Text);
+                num1 = decimal.Parse(textBox1.Text);
                 textBox2.AppendText($"{num1} *");
                 enterValue = true;
             }
@@ -241,7 +253,7 @@ namespace kalkulator
             else
             {
                 textBox2.Clear();
-                num1 = double.Parse(textBox1.Text);
+                num1 = decimal.Parse(textBox1.Text);
                 textBox2.AppendText($"{num1} /");
                 enterValue = true;
             }
@@ -297,24 +309,14 @@ namespace kalkulator
             {
                 textBox2.Text = string.Empty;
             }
+            if(textBox1.Text.Equals("Nie dziel przez 0"))
+            {
+                op = "";
+                textBox2.Text = string.Empty;
+            }
             textBox1.Text = "0";
-        }
-
-        private void button10_Click(object sender, EventArgs e)
-        {
-            double resultOfSqrt;
-            num1 = double.Parse(textBox1.Text);
-            if (num1 < 0)
-            {
-                textBox1.Text = "Error";
-                enterValue = true;
-            }
-            else
-            {
-                resultOfSqrt = Math.Sqrt(num1);
-                textBox2.Text = $"√{num1}";
-                textBox1.Text = $"{resultOfSqrt}";
-            }
+            buttonEqual.Enabled = true;
+            buttonEqual.BackColor = System.Drawing.SystemColors.ActiveBorder;
         }
     }
 }
