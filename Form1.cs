@@ -30,6 +30,9 @@ namespace kalkulator
             if (enterValue)
             {
                 textBox1.Text = string.Empty;
+                enterValue = false;
+                if (textBox2.Text.Contains("="))
+                    textBox2.Text = string.Empty;
             }
             Button button = (Button)sender;
             textBox1.Text = textBox1.Text + button.Text;
@@ -62,7 +65,7 @@ namespace kalkulator
                     textBox2.Clear();
                     result = num2 + tempDouble;
                     textBox1.Text = result.ToString();
-                    if (num2 < 0)
+                    if (tempDouble < 0)
                     {
                         textBox2.AppendText($"{num2} + ({tempDouble}) = \n");
                     }
@@ -80,14 +83,15 @@ namespace kalkulator
                     tempDouble = num2;
                     textBox2.Clear();
                     result = num1 - num2;
+                    result = Math.Round(result, 2);
                     textBox1.Text = result.ToString();
-                    if (num2 < 0)
+                    if (num2 > 0)
                     {
-                        textBox2.AppendText($"{num1} - ({num2}) = \n");
+                        textBox2.AppendText($"{num1} - {num2} = \n");
                     }
                     else
                     {
-                        textBox2.AppendText($"{num1} - {num2} = \n");
+                        textBox2.AppendText($"{num1} - ({num2}) = \n");
                     }
                     ifClicked = true;
                 }
@@ -96,7 +100,7 @@ namespace kalkulator
                     textBox2.Clear();
                     result = num2 - tempDouble;
                     textBox1.Text = result.ToString();
-                    if (num2 < 0)
+                    if (tempDouble < 0)
                     {
                         textBox2.AppendText($"{num2} - ({tempDouble}) = \n");
                     }
@@ -159,6 +163,7 @@ namespace kalkulator
                     }
                 }
             }
+            enterValue = true;
         }
         private void button7_Click(object sender, EventArgs e) // C
         {
@@ -248,12 +253,11 @@ namespace kalkulator
             {
                 if (!textBox1.Text.Contains(","))
                 {
-                    if (textBox1.Text.Equals(""))
+                    if (textBox1.Text.Equals("") || enterValue == true)
                     {
                         textBox1.Text = "0";
                     }
                     textBox1.AppendText(",");
-                    enterValue = false;
                 }
             }
         }
@@ -300,14 +304,17 @@ namespace kalkulator
         {
             double resultOfSqrt;
             num1 = double.Parse(textBox1.Text);
-            resultOfSqrt = Math.Sqrt(num1);
-            textBox2.Text = $"√{num1}";
-            textBox1.Text = $"{resultOfSqrt}";
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-
+            if (num1 < 0)
+            {
+                textBox1.Text = "Error";
+                enterValue = true;
+            }
+            else
+            {
+                resultOfSqrt = Math.Sqrt(num1);
+                textBox2.Text = $"√{num1}";
+                textBox1.Text = $"{resultOfSqrt}";
+            }
         }
     }
 }

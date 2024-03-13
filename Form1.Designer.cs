@@ -88,7 +88,6 @@ namespace kalkulator
             groupBox1.Size = new System.Drawing.Size(351, 531);
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
-            groupBox1.Enter += groupBox1_Enter;
             // 
             // button10
             // 
@@ -150,10 +149,11 @@ namespace kalkulator
             textBox2.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             textBox2.Font = new System.Drawing.Font("Trebuchet MS", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             textBox2.Location = new System.Drawing.Point(12, 22);
+            textBox2.MaxLength = 100;
             textBox2.Multiline = true;
             textBox2.Name = "textBox2";
-            textBox2.Size = new System.Drawing.Size(326, 40);
-            textBox2.TabIndex = 17;
+            textBox2.Size = new System.Drawing.Size(326, 46);
+            textBox2.TabIndex = 6;
             textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // buttonMulti
@@ -272,6 +272,7 @@ namespace kalkulator
             textBox1.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             textBox1.Font = new System.Drawing.Font("Trebuchet MS", 26.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             textBox1.Location = new System.Drawing.Point(12, 81);
+            textBox1.MaxLength = 100;
             textBox1.Multiline = true;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
