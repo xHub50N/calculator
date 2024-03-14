@@ -139,7 +139,7 @@ namespace kalkulator
                 {
                     if (num2 == 0)
                     {
-                        textBox1.Text = "Nie dziel przez 0";
+                        textBox1.Text = "Infinity";
                         buttonEqual.Enabled = false;
                         buttonEqual.BackColor = Color.Red;  
                     }
@@ -157,13 +157,22 @@ namespace kalkulator
                 {
                     if (result == 0)
                     {
-                        textBox1.Text = string.Empty;   
+                        //textBox1.Text = string.Empty;   
                     }
                     else
                     {
                         textBox2.Clear();
                         result = num2 / tempDouble;
+                        result = Math.Round(result,15);
+                        if(result == 0)
+                        {
+                            textBox1.Text = "0";
+                            num2 = 0;
+                        }
+                        else
+                        {
                         textBox1.Text = result.ToString();
+                        }
                         textBox2.AppendText($"{num2} / {tempDouble} = \n");
                     }
                 }
@@ -293,6 +302,12 @@ namespace kalkulator
         }
         private void buttonBack_Click(object sender, EventArgs e) // <-
         {
+            if(textBox2.Text != string.Empty)
+            {
+                textBox2.Text = string.Empty;
+            }
+            else
+            {
             if (textBox1.Text.Length > 1)
             {
                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
@@ -300,6 +315,7 @@ namespace kalkulator
             else
             {
                 textBox1.Text = "0";
+            }
             }
         }
 
@@ -309,7 +325,7 @@ namespace kalkulator
             {
                 textBox2.Text = string.Empty;
             }
-            if(textBox1.Text.Equals("Nie dziel przez 0"))
+            if(textBox1.Text.Equals("Infinity"))
             {
                 op = "";
                 textBox2.Text = string.Empty;
