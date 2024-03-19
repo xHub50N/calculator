@@ -135,11 +135,11 @@ namespace kalkulator
             // textBox2
             // 
             textBox2.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
-            textBox2.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            textBox2.Location = new System.Drawing.Point(12, 22);
+            textBox2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            textBox2.Location = new System.Drawing.Point(6, 22);
             textBox2.MaxLength = 10;
             textBox2.Name = "textBox2";
-            textBox2.Size = new System.Drawing.Size(326, 32);
+            textBox2.Size = new System.Drawing.Size(337, 23);
             textBox2.TabIndex = 6;
             textBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -258,12 +258,12 @@ namespace kalkulator
             // 
             textBox1.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             textBox1.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            textBox1.Location = new System.Drawing.Point(12, 67);
+            textBox1.Location = new System.Drawing.Point(6, 51);
             textBox1.MaxLength = 10;
             textBox1.Name = "textBox1";
             textBox1.ReadOnly = true;
             textBox1.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            textBox1.Size = new System.Drawing.Size(326, 39);
+            textBox1.Size = new System.Drawing.Size(337, 39);
             textBox1.TabIndex = 6;
             textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
@@ -337,7 +337,7 @@ namespace kalkulator
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(351, 410);
+            ClientSize = new System.Drawing.Size(349, 410);
             Controls.Add(groupBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             HelpButton = true;
