@@ -137,7 +137,7 @@ namespace kalkulator
             textBox2.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
             textBox2.Font = new System.Drawing.Font("Trebuchet MS", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             textBox2.Location = new System.Drawing.Point(12, 22);
-            textBox2.MaxLength = 16;
+            textBox2.MaxLength = 10;
             textBox2.Name = "textBox2";
             textBox2.Size = new System.Drawing.Size(326, 32);
             textBox2.TabIndex = 6;
@@ -152,7 +152,7 @@ namespace kalkulator
             buttonMulti.TabIndex = 16;
             buttonMulti.Text = "*";
             buttonMulti.UseVisualStyleBackColor = false;
-            buttonMulti.Click += buttonMult_Click;
+            buttonMulti.Click += buttonMathOperation_Click;
             // 
             // buttonDivide
             // 
@@ -163,7 +163,7 @@ namespace kalkulator
             buttonDivide.TabIndex = 15;
             buttonDivide.Text = "/";
             buttonDivide.UseVisualStyleBackColor = false;
-            buttonDivide.Click += buttonDivi_Click;
+            buttonDivide.Click += buttonMathOperation_Click;
             // 
             // buttonMinus
             // 
@@ -174,7 +174,7 @@ namespace kalkulator
             buttonMinus.TabIndex = 14;
             buttonMinus.Text = "-";
             buttonMinus.UseVisualStyleBackColor = false;
-            buttonMinus.Click += buttonMinus_Click;
+            buttonMinus.Click += buttonMathOperation_Click;
             // 
             // buttonPlus
             // 
@@ -185,7 +185,7 @@ namespace kalkulator
             buttonPlus.TabIndex = 13;
             buttonPlus.Text = "+";
             buttonPlus.UseVisualStyleBackColor = false;
-            buttonPlus.Click += buttonAdd_Click;
+            buttonPlus.Click += buttonMathOperation_Click;
             // 
             // buttonClear
             // 
