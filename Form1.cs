@@ -14,6 +14,7 @@ namespace kalkulator
         private bool _ifEqualClicked, _canDoEqual;
         private double _temporaryValue;
         private bool _hopToIf = true;
+        private bool _hopToAddCountAfterComma = false;
 
         public Form1()
         {
@@ -45,8 +46,6 @@ namespace kalkulator
             Array.Reverse(charArray);
             return new string(charArray);
         }
-
-
         private void buttonNum_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "0") textBox1.Text = string.Empty;
@@ -54,15 +53,24 @@ namespace kalkulator
             Button button = (Button)sender;
             if (_enterValue)
             {
+                if (textBox1.Text.StartsWith("0,"))
+                {
+                    //textBox1.Text = string.Empty;
+                    //textBox1.Text += "0,";
+                }
+                else
+                {
                 textBox1.Text = string.Empty;
                 _enterValue = false;
                 if (textBox2.Text.Contains("="))
                     textBox1.Text = string.Empty;
+                }
             }
             if (textBox1.Text.Length < 15)
             {
             if (button.Text == ",")
             {
+                textBox1.Text += "0";
                 textBox1.Text += button.Text;
             }
             textBox1.Text += button.Text;
@@ -287,8 +295,17 @@ namespace kalkulator
             if (!textBox1.Text.EndsWith(","))
                 if (!textBox1.Text.Contains(","))
                 {
-                    if (textBox1.Text.Equals("") || _enterValue) textBox1.Text = "0";
+                    if (textBox1.Text.Equals("") || _enterValue) { textBox1.Text = "0"; };
                     textBox1.AppendText(",");
+                    _hopToAddCountAfterComma = true;
+                }
+                else if (textBox2.Text.EndsWith("+") || textBox2.Text.EndsWith("-") || textBox2.Text.EndsWith("*") || textBox2.Text.EndsWith("/"))
+                {
+                    textBox1.Text = "0,";
+                }
+                else if (textBox2.Text.EndsWith("= \n"))
+                {
+                    textBox1.Text = "0,"; textBox2.Text = string.Empty;
                 }
         }
 
