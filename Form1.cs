@@ -9,7 +9,7 @@ namespace kalkulator
     {
         private string _op = string.Empty;
         private double _result;
-        string _num1, _num2, _tempString,_tempNum,_tempNumOfEq,_tempOp;
+        string _num1, _num2, _tempString, _tempNum, _tempNumOfEq, _tempOp;
         private bool _enterValue;
         private bool _ifEqualClicked, _canDoEqual;
         private double _temporaryValue;
@@ -31,7 +31,7 @@ namespace kalkulator
                 {
                     numberBuilder.Append(c);
                 }
-                else if (c == '+' || c =='-' || c== '*' || c=='/')
+                else if (c == '+' || c == '-' || c == '*' || c == '/')
                 {
                     break;
                 }
@@ -49,35 +49,30 @@ namespace kalkulator
         private void buttonNum_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "0") textBox1.Text = string.Empty;
-            
+
             Button button = (Button)sender;
             if (_enterValue)
             {
                 if (textBox1.Text.StartsWith("0,"))
                 {
-                    //textBox1.Text = string.Empty;
-                    //textBox1.Text += "0,";
                 }
                 else
                 {
-                textBox1.Text = string.Empty;
-                _enterValue = false;
-                if (textBox2.Text.Contains("="))
                     textBox1.Text = string.Empty;
+                    _enterValue = false;
+                    if (textBox2.Text.Contains("="))
+                        textBox1.Text = string.Empty;
                 }
             }
-            if (textBox1.Text.Length < 15)
-            {
             if (button.Text == ",")
-            {
-                textBox1.Text += "0";
+            { 
+                   textBox1.Text += "0";
+                   textBox1.Text += button.Text;
+            }
                 textBox1.Text += button.Text;
-            }
-            textBox1.Text += button.Text;
-            _canDoEqual = true;
-            _ifEqualClicked = false;
-            _hopToIf = true;
-            }
+                _canDoEqual = true;
+                _ifEqualClicked = false;
+                _hopToIf = true;
         }
 
         private void buttonEqual_Click(object sender, EventArgs e) // =
@@ -108,7 +103,7 @@ namespace kalkulator
                         textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
                         break;
                     case "*":
-                        if(textBox2.Text.Equals("0 *"))
+                        if (textBox2.Text.Equals("0 *"))
                         {
                             textBox2.Text = string.Empty;
                         }
@@ -140,75 +135,75 @@ namespace kalkulator
             }
             else
             {
-            if (textBox1.Text != string.Empty)
-            {
-                if(textBox1.Text == "0" )textBox2.Text = string.Empty;
-                switch(_op)
+                if (textBox1.Text != string.Empty)
                 {
-                    case "+":
-                        if (textBox2.Text.Contains("0 +"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result + Double.Parse(textBox1.Text)).ToString();
-                        textBox2.Text  = ($"{_num1} {_num2} = \n");
-                        break;
-                    case "-":
-                        if (textBox2.Text.Equals("0 -"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result - Double.Parse(textBox1.Text)).ToString();
-                        textBox2.Text = ($"{_num1} {_num2} = \n");
-                        break;
-                    case "*":
-                        if(textBox2.Text.Equals("0 *"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result * Double.Parse(textBox1.Text)).ToString();
-                        textBox2.Text = ($"{_num1} {_num2} = \n");
-                        break;
-                    case "/":
-                        if (textBox2.Text.Equals("0 /"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        if(_temporaryValue == 0)
-                        {
-                            textBox2.Text = string.Empty;
-                            buttonEqual.Enabled = false;
-                            buttonEqual.BackColor = Color.Red;
-                            textBox1.Enabled = false;
-                            textBox2.Enabled = false;
-                            textBox1.Text = "Nie dziel przez 0";
+                    if (textBox1.Text == "0") textBox2.Text = string.Empty;
+                    switch (_op)
+                    {
+                        case "+":
+                            if (textBox2.Text.Contains("0 +"))
+                            {
+                                textBox2.Text = string.Empty;
+                            }
+                            _temporaryValue = Double.Parse(textBox1.Text);
+                            textBox1.Text = (_result + Double.Parse(textBox1.Text)).ToString();
+                            textBox2.Text = ($"{_num1} {_num2} = \n");
                             break;
-                        }
-                        textBox1.Text = (_result / Double.Parse(textBox1.Text)).ToString();
-                        textBox2.Text = ($"{_num1} {_num2} = \n");
-                        break;
-                    default: textBox2.Text = $"{textBox1.Text} = "; break;
-                }
-                    
+                        case "-":
+                            if (textBox2.Text.Equals("0 -"))
+                            {
+                                textBox2.Text = string.Empty;
+                            }
+                            _temporaryValue = Double.Parse(textBox1.Text);
+                            textBox1.Text = (_result - Double.Parse(textBox1.Text)).ToString();
+                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            break;
+                        case "*":
+                            if (textBox2.Text.Equals("0 *"))
+                            {
+                                textBox2.Text = string.Empty;
+                            }
+                            _temporaryValue = Double.Parse(textBox1.Text);
+                            textBox1.Text = (_result * Double.Parse(textBox1.Text)).ToString();
+                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            break;
+                        case "/":
+                            if (textBox2.Text.Equals("0 /"))
+                            {
+                                textBox2.Text = string.Empty;
+                            }
+                            _temporaryValue = Double.Parse(textBox1.Text);
+                            if (_temporaryValue == 0)
+                            {
+                                textBox2.Text = string.Empty;
+                                buttonEqual.Enabled = false;
+                                buttonEqual.BackColor = Color.Red;
+                                textBox1.Enabled = false;
+                                textBox2.Enabled = false;
+                                textBox1.Text = "Nie dziel przez 0";
+                                break;
+                            }
+                            textBox1.Text = (_result / Double.Parse(textBox1.Text)).ToString();
+                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            break;
+                        default: textBox2.Text = $"{textBox1.Text} = "; break;
+                    }
+
                 }
 
             }
-            if(_temporaryValue != 0 || _op != "/" )
-                {
-                    _result = Double.Parse(textBox1.Text);
-                    textBox1.Text = _result.ToString();
-                }
-            if(_ifEqualClicked == false)
+            if (_temporaryValue != 0 || _op != "/")
             {
-                if(_temporaryValue !=0)
+                _result = Double.Parse(textBox1.Text);
+                textBox1.Text = _result.ToString();
+            }
+            if (_ifEqualClicked == false)
+            {
+                if (_temporaryValue != 0)
                 {
-                _tempOp = _op;
-                _tempNumOfEq = ReverseString(textBox2.Text);
-                _tempNumOfEq = checkSign(_tempNumOfEq);
+                    _tempOp = _op;
+                    _tempNumOfEq = ReverseString(textBox2.Text);
+                    _tempNumOfEq = checkSign(_tempNumOfEq);
                 }
                 else
                 {
@@ -220,23 +215,22 @@ namespace kalkulator
             _ifEqualClicked = true;
 
         }
-        
+
         private void buttonMathOperation_Click(object sender, EventArgs e)
         {
-            
+
             if (_result != 0 && _canDoEqual == true && !textBox2.Text.Contains("=")) buttonEqual.PerformClick();
-            else 
-            _result = Double.Parse(textBox1.Text);
+            else
+                _result = Double.Parse(textBox1.Text);
             Button button = (Button)sender;
             _op = button.Text;
             _enterValue = true;
             _ifEqualClicked = false;
             if (textBox1.Text != "0")
             {
-                if(!textBox1.Text.Equals("Nie dziel przez 0"))
+                if (!textBox1.Text.Equals("Nie dziel przez 0"))
                 {
-
-                textBox2.Text = _num1 = $"{_result} {_op}";
+                    textBox2.Text = _num1 = $"{_result} {_op}";
                 }
             }
             else
@@ -247,7 +241,7 @@ namespace kalkulator
             _tempString = checkSign(textBox2.Text);
             if (_tempNum.Equals(_tempString))
             {
-                textBox2.Text = textBox2.Text.Substring(0, textBox2.Text.Length-1);
+                textBox2.Text = textBox2.Text.Substring(0, textBox2.Text.Length - 1);
                 textBox2.Text += _op;
                 _canDoEqual = false;
             }
@@ -263,11 +257,11 @@ namespace kalkulator
             textBox2.Text = string.Empty;
             _result = 0;
             buttonEqual.Enabled = true;
-            buttonEqual.BackColor = SystemColors.ActiveBorder;
+            buttonEqual.BackColor = SystemColors.MenuHighlight;
             textBox1.Enabled = true;
             textBox2.Enabled = true;
             _tempString = string.Empty;
-            _num1 = string.Empty; 
+            _num1 = string.Empty;
             _num2 = string.Empty;
             _tempString = string.Empty;
             _tempNum = string.Empty;
@@ -286,7 +280,7 @@ namespace kalkulator
 
             textBox1.Text = "0";
             buttonEqual.Enabled = true;
-            buttonEqual.BackColor = SystemColors.ActiveBorder;
+            buttonEqual.BackColor = SystemColors.MenuHighlight;
             textBox1.Enabled = true;
             textBox2.Enabled = true;
         }
@@ -323,12 +317,12 @@ namespace kalkulator
 
         private void buttonBack_Click(object sender, EventArgs e) // <-
         {
-            if(!textBox2.Text.Contains("=") && _hopToIf == true)
+            if (!textBox2.Text.Contains("=") && _hopToIf == true)
             {
-             if (textBox1.Text.Length > 1)
-                 textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
-             else
-                 textBox1.Text = "0";
+                if (textBox1.Text.Length > 1)
+                    textBox1.Text = textBox1.Text.Remove(textBox1.Text.Length - 1);
+                else
+                    textBox1.Text = "0";
             }
             else
             {

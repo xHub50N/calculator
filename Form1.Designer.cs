@@ -58,7 +58,7 @@ namespace kalkulator
             // 
             // groupBox1
             // 
-            groupBox1.BackColor = System.Drawing.Color.FromArgb(64, 64, 64);
+            groupBox1.BackColor = System.Drawing.Color.White;
             groupBox1.Controls.Add(buttonCE);
             groupBox1.Controls.Add(buttonBack);
             groupBox1.Controls.Add(buttonPM);
@@ -90,8 +90,9 @@ namespace kalkulator
             // 
             // buttonCE
             // 
-            buttonCE.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonCE.Location = new System.Drawing.Point(33, 125);
+            buttonCE.AutoSize = true;
+            buttonCE.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonCE.Location = new System.Drawing.Point(34, 107);
             buttonCE.Name = "buttonCE";
             buttonCE.Size = new System.Drawing.Size(50, 50);
             buttonCE.TabIndex = 21;
@@ -101,8 +102,8 @@ namespace kalkulator
             // 
             // buttonBack
             // 
-            buttonBack.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonBack.Location = new System.Drawing.Point(189, 125);
+            buttonBack.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonBack.Location = new System.Drawing.Point(190, 107);
             buttonBack.Name = "buttonBack";
             buttonBack.Size = new System.Drawing.Size(50, 50);
             buttonBack.TabIndex = 20;
@@ -112,8 +113,8 @@ namespace kalkulator
             // 
             // buttonPM
             // 
-            buttonPM.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonPM.Location = new System.Drawing.Point(33, 349);
+            buttonPM.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonPM.Location = new System.Drawing.Point(34, 331);
             buttonPM.Name = "buttonPM";
             buttonPM.Size = new System.Drawing.Size(50, 50);
             buttonPM.TabIndex = 19;
@@ -123,8 +124,8 @@ namespace kalkulator
             // 
             // buttonComma
             // 
-            buttonComma.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonComma.Location = new System.Drawing.Point(189, 349);
+            buttonComma.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonComma.Location = new System.Drawing.Point(190, 331);
             buttonComma.Name = "buttonComma";
             buttonComma.Size = new System.Drawing.Size(50, 50);
             buttonComma.TabIndex = 18;
@@ -134,7 +135,7 @@ namespace kalkulator
             // 
             // textBox2
             // 
-            textBox2.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
+            textBox2.BackColor = System.Drawing.Color.White;
             textBox2.Font = new System.Drawing.Font("Trebuchet MS", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             textBox2.Location = new System.Drawing.Point(6, 22);
             textBox2.MaxLength = 10;
@@ -145,8 +146,8 @@ namespace kalkulator
             // 
             // buttonMulti
             // 
-            buttonMulti.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonMulti.Location = new System.Drawing.Point(267, 181);
+            buttonMulti.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonMulti.Location = new System.Drawing.Point(268, 163);
             buttonMulti.Name = "buttonMulti";
             buttonMulti.Size = new System.Drawing.Size(50, 50);
             buttonMulti.TabIndex = 16;
@@ -156,8 +157,8 @@ namespace kalkulator
             // 
             // buttonDivide
             // 
-            buttonDivide.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonDivide.Location = new System.Drawing.Point(267, 125);
+            buttonDivide.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonDivide.Location = new System.Drawing.Point(268, 107);
             buttonDivide.Name = "buttonDivide";
             buttonDivide.Size = new System.Drawing.Size(50, 50);
             buttonDivide.TabIndex = 15;
@@ -167,8 +168,8 @@ namespace kalkulator
             // 
             // buttonMinus
             // 
-            buttonMinus.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonMinus.Location = new System.Drawing.Point(267, 237);
+            buttonMinus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonMinus.Location = new System.Drawing.Point(268, 219);
             buttonMinus.Name = "buttonMinus";
             buttonMinus.Size = new System.Drawing.Size(50, 50);
             buttonMinus.TabIndex = 14;
@@ -178,8 +179,8 @@ namespace kalkulator
             // 
             // buttonPlus
             // 
-            buttonPlus.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonPlus.Location = new System.Drawing.Point(267, 293);
+            buttonPlus.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonPlus.Location = new System.Drawing.Point(268, 275);
             buttonPlus.Name = "buttonPlus";
             buttonPlus.Size = new System.Drawing.Size(50, 50);
             buttonPlus.TabIndex = 13;
@@ -189,8 +190,8 @@ namespace kalkulator
             // 
             // buttonClear
             // 
-            buttonClear.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            buttonClear.Location = new System.Drawing.Point(111, 125);
+            buttonClear.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            buttonClear.Location = new System.Drawing.Point(112, 107);
             buttonClear.Name = "buttonClear";
             buttonClear.Size = new System.Drawing.Size(50, 50);
             buttonClear.TabIndex = 12;
@@ -200,9 +201,9 @@ namespace kalkulator
             // 
             // buttonEqual
             // 
-            buttonEqual.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            buttonEqual.BackColor = System.Drawing.SystemColors.MenuHighlight;
             buttonEqual.Font = new System.Drawing.Font("Segoe UI Black", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            buttonEqual.Location = new System.Drawing.Point(267, 349);
+            buttonEqual.Location = new System.Drawing.Point(268, 331);
             buttonEqual.Name = "buttonEqual";
             buttonEqual.Size = new System.Drawing.Size(50, 50);
             buttonEqual.TabIndex = 11;
@@ -212,8 +213,8 @@ namespace kalkulator
             // 
             // button0
             // 
-            button0.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button0.Location = new System.Drawing.Point(111, 349);
+            button0.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button0.Location = new System.Drawing.Point(112, 331);
             button0.Name = "button0";
             button0.Size = new System.Drawing.Size(50, 50);
             button0.TabIndex = 10;
@@ -223,8 +224,8 @@ namespace kalkulator
             // 
             // button9
             // 
-            button9.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button9.Location = new System.Drawing.Point(189, 181);
+            button9.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button9.Location = new System.Drawing.Point(190, 163);
             button9.Name = "button9";
             button9.Size = new System.Drawing.Size(50, 50);
             button9.TabIndex = 9;
@@ -234,8 +235,8 @@ namespace kalkulator
             // 
             // button8
             // 
-            button8.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button8.Location = new System.Drawing.Point(111, 181);
+            button8.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button8.Location = new System.Drawing.Point(112, 163);
             button8.Name = "button8";
             button8.Size = new System.Drawing.Size(50, 50);
             button8.TabIndex = 8;
@@ -245,8 +246,8 @@ namespace kalkulator
             // 
             // button7
             // 
-            button7.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button7.Location = new System.Drawing.Point(33, 181);
+            button7.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button7.Location = new System.Drawing.Point(34, 163);
             button7.Name = "button7";
             button7.Size = new System.Drawing.Size(50, 50);
             button7.TabIndex = 7;
@@ -256,7 +257,7 @@ namespace kalkulator
             // 
             // textBox1
             // 
-            textBox1.BackColor = System.Drawing.Color.FromArgb(224, 224, 224);
+            textBox1.BackColor = System.Drawing.Color.White;
             textBox1.Font = new System.Drawing.Font("Trebuchet MS", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             textBox1.Location = new System.Drawing.Point(6, 51);
             textBox1.MaxLength = 10;
@@ -269,8 +270,8 @@ namespace kalkulator
             // 
             // button6
             // 
-            button6.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button6.Location = new System.Drawing.Point(189, 237);
+            button6.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button6.Location = new System.Drawing.Point(190, 219);
             button6.Name = "button6";
             button6.Size = new System.Drawing.Size(50, 50);
             button6.TabIndex = 5;
@@ -280,8 +281,8 @@ namespace kalkulator
             // 
             // button5
             // 
-            button5.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button5.Location = new System.Drawing.Point(111, 237);
+            button5.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button5.Location = new System.Drawing.Point(112, 219);
             button5.Name = "button5";
             button5.Size = new System.Drawing.Size(50, 50);
             button5.TabIndex = 4;
@@ -291,8 +292,8 @@ namespace kalkulator
             // 
             // button4
             // 
-            button4.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button4.Location = new System.Drawing.Point(33, 237);
+            button4.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button4.Location = new System.Drawing.Point(34, 219);
             button4.Name = "button4";
             button4.Size = new System.Drawing.Size(50, 50);
             button4.TabIndex = 3;
@@ -302,8 +303,8 @@ namespace kalkulator
             // 
             // button3
             // 
-            button3.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button3.Location = new System.Drawing.Point(189, 293);
+            button3.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button3.Location = new System.Drawing.Point(190, 275);
             button3.Name = "button3";
             button3.Size = new System.Drawing.Size(50, 50);
             button3.TabIndex = 2;
@@ -313,8 +314,8 @@ namespace kalkulator
             // 
             // button2
             // 
-            button2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button2.Location = new System.Drawing.Point(111, 293);
+            button2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button2.Location = new System.Drawing.Point(112, 275);
             button2.Name = "button2";
             button2.Size = new System.Drawing.Size(50, 50);
             button2.TabIndex = 1;
@@ -324,8 +325,8 @@ namespace kalkulator
             // 
             // button1
             // 
-            button1.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            button1.Location = new System.Drawing.Point(33, 293);
+            button1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            button1.Location = new System.Drawing.Point(34, 275);
             button1.Name = "button1";
             button1.Size = new System.Drawing.Size(50, 50);
             button1.TabIndex = 0;
@@ -337,7 +338,7 @@ namespace kalkulator
             // 
             AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            ClientSize = new System.Drawing.Size(349, 410);
+            ClientSize = new System.Drawing.Size(349, 391);
             Controls.Add(groupBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             HelpButton = true;
