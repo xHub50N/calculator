@@ -81,13 +81,6 @@ namespace kalkulator
                     if (textBox2.Text.Contains("="))
                         textBox1.Text = string.Empty;
                 }
-                //else
-                //{
-                //    textBox1.Text = string.Empty;
-                //    _enterValue = false;
-                //    if (textBox2.Text.Contains("="))
-                //        textBox1.Text = string.Empty;
-                //}
             }
             if (button.Text == ",")
             { 
