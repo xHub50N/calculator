@@ -8,13 +8,11 @@ namespace kalkulator
     public partial class Form1 : Form
     {
         private string _op = string.Empty;
-        private double _result;
+        private double _result, _temporaryValue;
         string _num1, _num2, _tempString, _tempNum, _tempNumOfEq, _tempOp;
         private bool _enterValue;
         private bool _ifEqualClicked, _canDoEqual;
-        private double _temporaryValue;
-        private bool _hopToIf = true;
-        private bool _hopToAddCountAfterComma = false;
+        private bool _hopToIf = true, _hopToAddCountAfterComma = false;
 
         public Form1()
         {
@@ -46,6 +44,18 @@ namespace kalkulator
             Array.Reverse(charArray);
             return new string(charArray);
         }
+        private string addCommaToDouble(string tempValue)
+        {
+            string returnedValue = "0,";
+            ReverseString(tempValue);
+            foreach(char ch in tempValue)
+            {
+                returnedValue += ch;
+            }
+            returnedValue = returnedValue.Substring(0,returnedValue.Length - 1);
+            return returnedValue;
+
+        }
         private void buttonNum_Click(object sender, EventArgs e)
         {
             if (textBox1.Text == "0") textBox1.Text = string.Empty;
@@ -53,26 +63,41 @@ namespace kalkulator
             Button button = (Button)sender;
             if (_enterValue)
             {
-                if (textBox1.Text.StartsWith("0,"))
+                if (textBox2.Text.Contains("="))
                 {
+                    textBox2.Text = string.Empty;
+                    if(textBox1.Text.StartsWith("0,"))
+                        textBox1.Text = string.Empty;
                 }
-                else
+                else if (textBox2.Text.Contains("+") || textBox2.Text.Contains("-") || textBox2.Text.Contains("*") || textBox2.Text.Contains("/"))
+                {
+                    if (textBox1.Text.StartsWith("0,"))
+                        textBox1.Text = string.Empty;
+                }
+                if (!textBox1.Text.StartsWith("0,"))
                 {
                     textBox1.Text = string.Empty;
                     _enterValue = false;
                     if (textBox2.Text.Contains("="))
                         textBox1.Text = string.Empty;
                 }
+                //else
+                //{
+                //    textBox1.Text = string.Empty;
+                //    _enterValue = false;
+                //    if (textBox2.Text.Contains("="))
+                //        textBox1.Text = string.Empty;
+                //}
             }
             if (button.Text == ",")
             { 
                    textBox1.Text += "0";
                    textBox1.Text += button.Text;
             }
-                textBox1.Text += button.Text;
-                _canDoEqual = true;
-                _ifEqualClicked = false;
-                _hopToIf = true;
+            textBox1.Text += button.Text;
+            _canDoEqual = true;
+            _ifEqualClicked = false;
+            _hopToIf = true;
         }
 
         private void buttonEqual_Click(object sender, EventArgs e) // =
@@ -130,7 +155,7 @@ namespace kalkulator
                         textBox1.Text = (_result / Double.Parse(_tempNumOfEq)).ToString();
                         textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
                         break;
-                    default: break;
+                    default: textBox2.Text = $"{textBox1.Text} = "; break;
                 }
             }
             else
@@ -195,6 +220,7 @@ namespace kalkulator
             if (_temporaryValue != 0 || _op != "/")
             {
                 _result = Double.Parse(textBox1.Text);
+                _result = Math.Round(_result, 14);
                 textBox1.Text = _result.ToString();
             }
             if (_ifEqualClicked == false)
@@ -203,8 +229,16 @@ namespace kalkulator
                 {
                     _tempOp = _op;
                     _tempNumOfEq = ReverseString(textBox2.Text);
-                    _tempNumOfEq = checkSign(_tempNumOfEq);
-                }
+                    if (_temporaryValue > 0 && _temporaryValue < 1)
+                    {
+                        _tempNumOfEq = checkSign(_tempNumOfEq);
+                        _tempNumOfEq = addCommaToDouble(_tempNumOfEq);
+                    }
+                    else
+                    {
+                        _tempNumOfEq = checkSign(_tempNumOfEq);
+                    }
+            }
                 else
                 {
                     _tempOp = _op;
@@ -289,9 +323,8 @@ namespace kalkulator
             if (!textBox1.Text.EndsWith(","))
                 if (!textBox1.Text.Contains(","))
                 {
-                    if (textBox1.Text.Equals("") || _enterValue) { textBox1.Text = "0"; };
+                    if (textBox1.Text.Equals("") || _enterValue) { textBox1.Text = "0"; textBox2.Text = string.Empty; };
                     textBox1.AppendText(",");
-                    _hopToAddCountAfterComma = true;
                 }
                 else if (textBox2.Text.EndsWith("+") || textBox2.Text.EndsWith("-") || textBox2.Text.EndsWith("*") || textBox2.Text.EndsWith("/"))
                 {
