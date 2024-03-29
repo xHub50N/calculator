@@ -120,7 +120,7 @@ namespace kalkulator
             buttonPM.TabIndex = 19;
             buttonPM.Text = "+/-";
             buttonPM.UseVisualStyleBackColor = false;
-            buttonPM.Click += button18_Click;
+            buttonPM.Click += buttonPM_Click;
             // 
             // buttonComma
             // 
@@ -131,7 +131,7 @@ namespace kalkulator
             buttonComma.TabIndex = 18;
             buttonComma.Text = ",";
             buttonComma.UseVisualStyleBackColor = false;
-            buttonComma.Click += button17_Click;
+            buttonComma.Click += buttonComma_Click;
             // 
             // textBox2
             // 
@@ -197,7 +197,7 @@ namespace kalkulator
             buttonClear.TabIndex = 12;
             buttonClear.Text = "C";
             buttonClear.UseVisualStyleBackColor = false;
-            buttonClear.Click += button7_Click;
+            buttonClear.Click += buttonClear_Click;
             // 
             // buttonEqual
             // 

@@ -12,7 +12,7 @@ namespace kalkulator
         string _num1, _num2, _tempString, _tempNum, _tempNumOfEq, _tempOp;
         private bool _enterValue;
         private bool _ifEqualClicked, _canDoEqual;
-        private bool _hopToIf = true, _hopToAddCountAfterComma = false;
+        private bool _hopToIf = true;
 
         public Form1()
         {
@@ -48,11 +48,11 @@ namespace kalkulator
         {
             string returnedValue = "0,";
             ReverseString(tempValue);
-            foreach(char ch in tempValue)
+            foreach (char ch in tempValue)
             {
                 returnedValue += ch;
             }
-            returnedValue = returnedValue.Substring(0,returnedValue.Length - 1);
+            returnedValue = returnedValue.Substring(0, returnedValue.Length - 1);
             return returnedValue;
 
         }
@@ -66,7 +66,7 @@ namespace kalkulator
                 if (textBox2.Text.Contains("="))
                 {
                     textBox2.Text = string.Empty;
-                    if(textBox1.Text.StartsWith("0,"))
+                    if (textBox1.Text.StartsWith("0,"))
                         textBox1.Text = string.Empty;
                 }
                 else if (textBox2.Text.Contains("+") || textBox2.Text.Contains("-") || textBox2.Text.Contains("*") || textBox2.Text.Contains("/"))
@@ -83,9 +83,9 @@ namespace kalkulator
                 }
             }
             if (button.Text == ",")
-            { 
-                   textBox1.Text += "0";
-                   textBox1.Text += button.Text;
+            {
+                textBox1.Text += "0";
+                textBox1.Text += button.Text;
             }
             textBox1.Text += button.Text;
             _canDoEqual = true;
@@ -93,7 +93,7 @@ namespace kalkulator
             _hopToIf = true;
         }
 
-        private void buttonEqual_Click(object sender, EventArgs e) // =
+        private void buttonEqual_Click(object sender, EventArgs e)
         {
             _num2 = textBox1.Text;
             textBox2.Text = $"{textBox2.Text} {textBox1.Text}";
@@ -231,7 +231,7 @@ namespace kalkulator
                     {
                         _tempNumOfEq = checkSign(_tempNumOfEq);
                     }
-            }
+                }
                 else
                 {
                     _tempOp = _op;
@@ -246,13 +246,16 @@ namespace kalkulator
         private void buttonMathOperation_Click(object sender, EventArgs e)
         {
 
-            if (_result != 0 && _canDoEqual == true && !textBox2.Text.Contains("=")) buttonEqual.PerformClick();
+            if (_result != 0 && _canDoEqual == true && !textBox2.Text.Contains("=")) 
+                buttonEqual.PerformClick();
             else
                 _result = Double.Parse(textBox1.Text);
+
             Button button = (Button)sender;
             _op = button.Text;
             _enterValue = true;
             _ifEqualClicked = false;
+
             if (textBox1.Text != "0")
             {
                 if (!textBox1.Text.Equals("Nie dziel przez 0"))
@@ -277,26 +280,7 @@ namespace kalkulator
                 _canDoEqual = true;
             }
         }
-
-        private void button7_Click(object sender, EventArgs e) // C
-        {
-            textBox1.Text = "0";
-            textBox2.Text = string.Empty;
-            _result = 0;
-            buttonEqual.Enabled = true;
-            buttonEqual.BackColor = SystemColors.MenuHighlight;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
-            _tempString = string.Empty;
-            _num1 = string.Empty;
-            _num2 = string.Empty;
-            _tempString = string.Empty;
-            _tempNum = string.Empty;
-            _tempNumOfEq = string.Empty;
-            _tempOp = string.Empty;
-            _hopToIf = true;
-        }
-        private void buttonCE_Click(object sender, EventArgs e) //CE
+        private void buttonCE_Click(object sender, EventArgs e)
         {
             if (textBox2.Text.Contains("=")) textBox2.Text = string.Empty;
             if (textBox1.Text.Equals("Nie dziel przez 0"))
@@ -311,7 +295,7 @@ namespace kalkulator
             textBox1.Enabled = true;
             textBox2.Enabled = true;
         }
-        private void button17_Click(object sender, EventArgs e) // ,
+        private void buttonComma_Click(object sender, EventArgs e) // ,
         {
             if (!textBox1.Text.EndsWith(","))
                 if (!textBox1.Text.Contains(","))
@@ -329,7 +313,7 @@ namespace kalkulator
                 }
         }
 
-        private void button18_Click(object sender, EventArgs e) // +/-
+        private void buttonPM_Click(object sender, EventArgs e)
         {
             if (!textBox1.Text.Equals("0"))
                 if (!textBox1.Text.Equals(""))
@@ -341,7 +325,7 @@ namespace kalkulator
                 }
         }
 
-        private void buttonBack_Click(object sender, EventArgs e) // <-
+        private void buttonBack_Click(object sender, EventArgs e)
         {
             if (!textBox2.Text.Contains("=") && _hopToIf == true)
             {
@@ -358,5 +342,23 @@ namespace kalkulator
             }
         }
 
+        private void buttonClear_Click(object sender, EventArgs e)
+        {
+            textBox1.Text = "0";
+            textBox2.Text = string.Empty;
+            _result = 0;
+            buttonEqual.Enabled = true;
+            buttonEqual.BackColor = SystemColors.MenuHighlight;
+            textBox1.Enabled = true;
+            textBox2.Enabled = true;
+            _tempString = string.Empty;
+            _num1 = string.Empty;
+            _num2 = string.Empty;
+            _tempString = string.Empty;
+            _tempNum = string.Empty;
+            _tempNumOfEq = string.Empty;
+            _tempOp = string.Empty;
+            _hopToIf = true;
+        }
     }
 }
