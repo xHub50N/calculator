@@ -34,7 +34,6 @@ namespace kalkulator
                     break;
                 }
             }
-
             string number = numberBuilder.ToString();
             return number;
         }
@@ -54,7 +53,6 @@ namespace kalkulator
             }
             returnedValue = returnedValue.Substring(0, returnedValue.Length - 1);
             return returnedValue;
-
         }
         private void buttonNum_Click(object sender, EventArgs e)
         {
@@ -92,6 +90,37 @@ namespace kalkulator
             _ifEqualClicked = false;
             _hopToIf = true;
         }
+        private void calculateTheResultVia(string equationOperator,string secondOperand, bool equalClicked)
+        {
+            if (textBox2.Text.Contains("0 ") && textBox2.Text.Contains(equationOperator))
+            {
+                textBox2.Text = string.Empty;
+            }
+            _temporaryValue = Double.Parse(textBox1.Text);
+            switch(equationOperator)
+            {
+                case "+": textBox1.Text = (_result + Double.Parse(secondOperand)).ToString(); break;
+                case "-": textBox1.Text = (_result - Double.Parse(secondOperand)).ToString(); break;
+                case "*": textBox1.Text = (_result * Double.Parse(secondOperand)).ToString(); break;
+                case "/":
+                    if (_temporaryValue == 0)
+                    {
+                        textBox2.Text = string.Empty;
+                        buttonEqual.Enabled = false;
+                        buttonEqual.BackColor = Color.Red;
+                        textBox1.Enabled = false;
+                        textBox2.Enabled = false;
+                        textBox1.Text = "Nie dziel przez 0";
+                        break;
+                    }
+                    textBox1.Text = (_result / Double.Parse(secondOperand)).ToString(); break;
+                default: break;
+            }
+            if(equalClicked)
+                textBox2.Text = ($"{_num2} {_tempOp} {secondOperand} = \n");
+            else
+                textBox2.Text = ($"{_num1} {_num2} = \n");
+        }
 
         private void buttonEqual_Click(object sender, EventArgs e)
         {
@@ -103,50 +132,16 @@ namespace kalkulator
                 switch (_tempOp)
                 {
                     case "+":
-                        if (textBox2.Text.Contains("0 +"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result + Double.Parse(_tempNumOfEq)).ToString();
-                        textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
+                        calculateTheResultVia(_tempOp, _tempNumOfEq, _ifEqualClicked);
                         break;
                     case "-":
-                        if (textBox2.Text.Equals("0 -"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result - Double.Parse(_tempNumOfEq)).ToString();
-                        textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
+                        calculateTheResultVia(_tempOp, _tempNumOfEq, _ifEqualClicked);
                         break;
                     case "*":
-                        if (textBox2.Text.Equals("0 *"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        textBox1.Text = (_result * Double.Parse(_tempNumOfEq)).ToString();
-                        textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
+                        calculateTheResultVia(_tempOp, _tempNumOfEq, _ifEqualClicked);
                         break;
                     case "/":
-                        if (textBox2.Text.Equals("0 /"))
-                        {
-                            textBox2.Text = string.Empty;
-                        }
-                        _temporaryValue = Double.Parse(textBox1.Text);
-                        if (_temporaryValue == 0)
-                        {
-                            textBox2.Text = string.Empty;
-                            buttonEqual.Enabled = false;
-                            buttonEqual.BackColor = Color.Red;
-                            textBox1.Enabled = false;
-                            textBox2.Enabled = false;
-                            textBox1.Text = "Nie dziel przez 0";
-                            break;
-                        }
-                        textBox1.Text = (_result / Double.Parse(_tempNumOfEq)).ToString();
-                        textBox2.Text = ($"{_num2} {_tempOp} {_tempNumOfEq} = \n");
+                        calculateTheResultVia(_tempOp, _tempNumOfEq, _ifEqualClicked);
                         break;
                     default: textBox2.Text = $"{textBox1.Text} = "; break;
                 }
@@ -159,56 +154,20 @@ namespace kalkulator
                     switch (_op)
                     {
                         case "+":
-                            if (textBox2.Text.Contains("0 +"))
-                            {
-                                textBox2.Text = string.Empty;
-                            }
-                            _temporaryValue = Double.Parse(textBox1.Text);
-                            textBox1.Text = (_result + Double.Parse(textBox1.Text)).ToString();
-                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            calculateTheResultVia(_op, textBox1.Text, _ifEqualClicked);
                             break;
                         case "-":
-                            if (textBox2.Text.Equals("0 -"))
-                            {
-                                textBox2.Text = string.Empty;
-                            }
-                            _temporaryValue = Double.Parse(textBox1.Text);
-                            textBox1.Text = (_result - Double.Parse(textBox1.Text)).ToString();
-                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            calculateTheResultVia(_op, textBox1.Text, _ifEqualClicked);
                             break;
                         case "*":
-                            if (textBox2.Text.Equals("0 *"))
-                            {
-                                textBox2.Text = string.Empty;
-                            }
-                            _temporaryValue = Double.Parse(textBox1.Text);
-                            textBox1.Text = (_result * Double.Parse(textBox1.Text)).ToString();
-                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            calculateTheResultVia(_op, textBox1.Text, _ifEqualClicked);
                             break;
                         case "/":
-                            if (textBox2.Text.Equals("0 /"))
-                            {
-                                textBox2.Text = string.Empty;
-                            }
-                            _temporaryValue = Double.Parse(textBox1.Text);
-                            if (_temporaryValue == 0)
-                            {
-                                textBox2.Text = string.Empty;
-                                buttonEqual.Enabled = false;
-                                buttonEqual.BackColor = Color.Red;
-                                textBox1.Enabled = false;
-                                textBox2.Enabled = false;
-                                textBox1.Text = "Nie dziel przez 0";
-                                break;
-                            }
-                            textBox1.Text = (_result / Double.Parse(textBox1.Text)).ToString();
-                            textBox2.Text = ($"{_num1} {_num2} = \n");
+                            calculateTheResultVia(_op, textBox1.Text, _ifEqualClicked);
                             break;
                         default: textBox2.Text = $"{textBox1.Text} = "; break;
                     }
-
                 }
-
             }
             if (_temporaryValue != 0 || _op != "/")
             {
@@ -295,7 +254,7 @@ namespace kalkulator
             textBox1.Enabled = true;
             textBox2.Enabled = true;
         }
-        private void buttonComma_Click(object sender, EventArgs e) // ,
+        private void buttonComma_Click(object sender, EventArgs e)
         {
             if (!textBox1.Text.EndsWith(","))
                 if (!textBox1.Text.Contains(","))
@@ -324,7 +283,6 @@ namespace kalkulator
                         textBox1.Text = textBox1.Text[1..];
                 }
         }
-
         private void buttonBack_Click(object sender, EventArgs e)
         {
             if (!textBox2.Text.Contains("=") && _hopToIf == true)
@@ -341,7 +299,6 @@ namespace kalkulator
                 _canDoEqual = false;
             }
         }
-
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBox1.Text = "0";
