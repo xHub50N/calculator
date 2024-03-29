@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Drawing;
 using System.Text;
 using System.Windows.Forms;
@@ -13,11 +14,13 @@ namespace kalkulator
         private bool _enterValue;
         private bool _ifEqualClicked, _canDoEqual;
         private bool _hopToIf = true;
+        private List<Button> buttonGroup = new List<Button>();
 
         public Form1()
         {
             InitializeComponent();
             textBox1.Text = "0";
+            AddButtonsToGroup(this);
         }
         private string checkSign(string textBox)
         {
@@ -110,6 +113,7 @@ namespace kalkulator
                         buttonEqual.BackColor = Color.Red;
                         textBox1.Enabled = false;
                         textBox2.Enabled = false;
+                        ToggleGroupEnabled(false);
                         textBox1.Text = "Nie dziel przez 0";
                         break;
                     }
@@ -120,8 +124,32 @@ namespace kalkulator
                 textBox2.Text = ($"{_num2} {_tempOp} {secondOperand} = \n");
             else
                 textBox2.Text = ($"{_num1} {_num2} = \n");
+            if (_temporaryValue == 0 && equationOperator == "/")
+                textBox2.Text = string.Empty;
         }
-
+        private void AddButtonsToGroup(Control control)
+        {
+            foreach (Control ctrl in control.Controls)
+            {
+                if (ctrl is Button button)
+                {
+                    buttonGroup.Add(button);
+                }
+                else if (ctrl.HasChildren)
+                {
+                    AddButtonsToGroup(ctrl);
+                }
+            }
+            buttonGroup.Remove(buttonCE);
+            buttonGroup.Remove(buttonClear);
+        }
+        private void ToggleGroupEnabled(bool enabled)
+        {
+            foreach (Button button in buttonGroup)
+            {
+                button.Enabled = enabled;
+            }
+        }
         private void buttonEqual_Click(object sender, EventArgs e)
         {
             _num2 = textBox1.Text;
@@ -247,12 +275,10 @@ namespace kalkulator
                 _op = "";
                 textBox2.Text = string.Empty;
             }
-
-            textBox1.Text = "0";
-            buttonEqual.Enabled = true;
             buttonEqual.BackColor = SystemColors.MenuHighlight;
-            textBox1.Enabled = true;
-            textBox2.Enabled = true;
+            textBox1.Text = "0";
+            buttonEqual.Enabled = textBox1.Enabled = textBox2.Enabled = true;
+            ToggleGroupEnabled(true);
         }
         private void buttonComma_Click(object sender, EventArgs e)
         {
@@ -302,20 +328,12 @@ namespace kalkulator
         private void buttonClear_Click(object sender, EventArgs e)
         {
             textBox1.Text = "0";
-            textBox2.Text = string.Empty;
             _result = 0;
-            buttonEqual.Enabled = true;
+            ToggleGroupEnabled(true);
             buttonEqual.BackColor = SystemColors.MenuHighlight;
-            textBox1.Enabled = true;
+            textBox1.Enabled = textBox2.Enabled = _hopToIf = true;
             textBox2.Enabled = true;
-            _tempString = string.Empty;
-            _num1 = string.Empty;
-            _num2 = string.Empty;
-            _tempString = string.Empty;
-            _tempNum = string.Empty;
-            _tempNumOfEq = string.Empty;
-            _tempOp = string.Empty;
-            _hopToIf = true;
+            textBox2.Text = _tempString = _num1 = _num2 = _tempString = _tempNum = _tempNumOfEq = _tempOp = string.Empty;
         }
     }
 }
