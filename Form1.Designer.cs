@@ -29,7 +29,6 @@ namespace kalkulator
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             groupBox1 = new System.Windows.Forms.GroupBox();
             buttonCE = new System.Windows.Forms.Button();
             buttonBack = new System.Windows.Forms.Button();
@@ -342,9 +341,8 @@ namespace kalkulator
             Controls.Add(groupBox1);
             FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             HelpButton = true;
-            Icon = (System.Drawing.Icon)resources.GetObject("$this.Icon");
             Name = "Form1";
-            Text = "Kalkulator";
+            Text = "Calculator";
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ResumeLayout(false);
