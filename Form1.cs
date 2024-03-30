@@ -93,14 +93,14 @@ namespace kalkulator
             _ifEqualClicked = false;
             _hopToIf = true;
         }
-        private void calculateTheResultVia(string equationOperator,string secondOperand, bool equalClicked)
+        private void calculateTheResultVia(string equationOperator, string secondOperand, bool equalClicked)
         {
             if (textBox2.Text.Contains("0 ") && textBox2.Text.Contains(equationOperator))
             {
                 textBox2.Text = string.Empty;
             }
             _temporaryValue = Double.Parse(textBox1.Text);
-            switch(equationOperator)
+            switch (equationOperator)
             {
                 case "+": textBox1.Text = (_result + Double.Parse(secondOperand)).ToString(); break;
                 case "-": textBox1.Text = (_result - Double.Parse(secondOperand)).ToString(); break;
@@ -120,7 +120,7 @@ namespace kalkulator
                     textBox1.Text = (_result / Double.Parse(secondOperand)).ToString(); break;
                 default: break;
             }
-            if(equalClicked)
+            if (equalClicked)
                 textBox2.Text = ($"{_num2} {_tempOp} {secondOperand} = \n");
             else
                 textBox2.Text = ($"{_num1} {_num2} = \n");
@@ -233,7 +233,7 @@ namespace kalkulator
         private void buttonMathOperation_Click(object sender, EventArgs e)
         {
 
-            if (_result != 0 && _canDoEqual == true && !textBox2.Text.Contains("=")) 
+            if (_result != 0 && _canDoEqual == true && !textBox2.Text.Contains("="))
                 buttonEqual.PerformClick();
             else
                 _result = Double.Parse(textBox1.Text);
@@ -335,5 +335,6 @@ namespace kalkulator
             textBox2.Enabled = true;
             textBox2.Text = _tempString = _num1 = _num2 = _tempString = _tempNum = _tempNumOfEq = _tempOp = string.Empty;
         }
+
     }
 }
