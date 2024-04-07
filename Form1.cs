@@ -12,7 +12,7 @@ namespace kalkulator
         private double _result, _temporaryValue;
         string _num1, _num2, _tempString, _tempNum, _tempNumOfEq, _tempOp;
         private bool _enterValue;
-        private bool _ifEqualClicked, _canDoEqual;
+        private bool _ifEqualClicked, _canDoEqual,_commaAdd;
         private bool _hopToIf = true;
         private List<Button> buttonGroup = new List<Button>();
 
@@ -70,11 +70,6 @@ namespace kalkulator
                     if (textBox1.Text.StartsWith("0,"))
                         textBox1.Text = string.Empty;
                 }
-                else if (textBox2.Text.Contains("+") || textBox2.Text.Contains("-") || textBox2.Text.Contains("*") || textBox2.Text.Contains("/"))
-                {
-                    if (textBox1.Text.StartsWith("0,"))
-                        textBox1.Text = string.Empty;
-                }
                 if (!textBox1.Text.StartsWith("0,"))
                 {
                     textBox1.Text = string.Empty;
@@ -92,6 +87,7 @@ namespace kalkulator
             _canDoEqual = true;
             _ifEqualClicked = false;
             _hopToIf = true;
+            _commaAdd = false;
         }
         private void calculateTheResultVia(string equationOperator, string secondOperand, bool equalClicked)
         {
@@ -152,6 +148,7 @@ namespace kalkulator
         }
         private void buttonEqual_Click(object sender, EventArgs e)
         {
+            _commaAdd = true;
             _num2 = textBox1.Text;
             textBox2.Text = $"{textBox2.Text} {textBox1.Text}";
             if (_ifEqualClicked)
@@ -266,6 +263,7 @@ namespace kalkulator
             {
                 _canDoEqual = true;
             }
+            _commaAdd = true;
         }
         private void buttonCE_Click(object sender, EventArgs e)
         {
@@ -282,20 +280,29 @@ namespace kalkulator
         }
         private void buttonComma_Click(object sender, EventArgs e)
         {
-            if (!textBox1.Text.EndsWith(","))
-                if (!textBox1.Text.Contains(","))
-                {
-                    if (textBox1.Text.Equals("") || _enterValue) { textBox1.Text = "0"; textBox2.Text = string.Empty; };
-                    textBox1.AppendText(",");
+            if (!textBox1.Text.Contains(","))
+            {
+                if (textBox1.Text.Equals("") || _enterValue) 
+                { 
+                    textBox1.Text = "0"; 
                 }
-                else if (textBox2.Text.EndsWith("+") || textBox2.Text.EndsWith("-") || textBox2.Text.EndsWith("*") || textBox2.Text.EndsWith("/"))
-                {
+                textBox1.AppendText(",");
+            }
+            else if ((textBox2.Text.EndsWith("+") || textBox2.Text.EndsWith("-") || textBox2.Text.EndsWith("*") || textBox2.Text.EndsWith("/")) && !textBox1.Text.Contains(","))
+            {
+                if (checkSign(textBox2.Text).Equals(textBox1.Text))
                     textBox1.Text = "0,";
-                }
-                else if (textBox2.Text.EndsWith("= \n"))
-                {
-                    textBox1.Text = "0,"; textBox2.Text = string.Empty;
-                }
+            }
+            else if (textBox2.Text.EndsWith("= \n"))
+            {
+                textBox1.Text = "0,"; textBox2.Text = string.Empty;
+            }
+            else if (textBox1.Text.Contains(",") && _commaAdd)
+            {
+                textBox1.Text = "0,";
+            }
+            _commaAdd = false;
+
         }
 
         private void buttonPM_Click(object sender, EventArgs e)
